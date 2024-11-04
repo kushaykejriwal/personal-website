@@ -1,31 +1,61 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>My Personal Website</title>
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kushay</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="message-row hidden" id="messageRow">
+            <div class="avatar">KK</div>
+            <div class="message-bubble">
+                <p class="message-text">Hi there! What are you looking for?</p>
+            </div>
+        </div>
+        
+        <div class="options-container" id="optionsContainer">
+            <button class="option-button" id="workButton">💼 Work stuff</button>
+            <button class="option-button" id="aboutButton">👋 Learn more about Kushay</button>
+        </div>
+    </div>
 
-  <body>
-    <header>
-      <h1>Welcome to my website</h1>
-      <nav>
-        <u1>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="resume.html">Resume</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="media/movies.html">Movie List</a></li>
-        </u1>
-      </nav>
-    </header>
-    <section>
-      <h2>About Me</h2>
-      <p>Hello, I'm Kushay! I want to learn!</p>
-    </section>
-    <footer>
-      <p>&copy; 2024 Kushay's Website</p>
-    </footer>
-  </body>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const messageRow = document.getElementById('messageRow');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const workButton = document.getElementById('workButton');
+        const aboutButton = document.getElementById('aboutButton');
+
+        // Show message with fade in
+        setTimeout(() => {
+            messageRow.classList.remove('hidden');
+        }, 500);
+
+        // Show options container
+        setTimeout(() => {
+            optionsContainer.style.display = 'block';
+        }, 1500);
+
+        // Show first button with a delay
+        setTimeout(() => {
+            workButton.classList.add('show');
+        }, 1600);
+
+        // Show second button after a delay
+        setTimeout(() => {
+            aboutButton.classList.add('show');
+        }, 1900);
+
+        // Add click handlers for buttons
+        const buttons = document.querySelectorAll('.option-button');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                console.log('Clicked:', button.textContent);
+            });
+        });
+    });
+    </script>
+</body>
 </html>
