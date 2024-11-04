@@ -1,44 +1,110 @@
-body {
-  font-family: Arial, sans-serif;
+* {
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
+  box-sizing: border-box;
 }
 
-header {
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
-}
-
-nav ul {
-  list-style-type: none;
+body {
+  min-height: 100vh;
+  background-color: #18181B;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   display: flex;
-  gap: 1rem;
-}
-
-nav ul li {
-  margin: 0;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: #fff;
-}
-
-section {
-  padding: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
-  position: fixed;
-  bottom: 0;
+}
+
+.chat-container {
+  max-width: 42rem;
   width: 100%;
+}
+
+.message-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #2563EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  font-size: 0.875rem;
+}
+
+.message-bubble {
+  background-color: #1E1E1E;
+  padding: 1rem;
+  border-radius: 1rem;
+  border-top-left-radius: 0;
+  max-width: 80%;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.message-text {
+  color: white;
+  font-size: 1.25rem;
+}
+
+.options-container {
+  margin-top: 1rem;
+  padding-left: 3rem;
+  display: none;
+}
+
+.option-button {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #2563EB, #4F46E5);
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.option-button.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.option-button:hover {
+  background: linear-gradient(135deg, #4F46E5, #2563EB);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .option-button {
+      width: auto;
+      display: inline-block;
+      margin-right: 0.5rem;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.hidden {
+  display: none;
 }
