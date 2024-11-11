@@ -7,55 +7,69 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="chat-container">
-        <div class="message-row hidden" id="messageRow">
-            <div class="avatar">KK</div>
-            <div class="message-bubble">
-                <p class="message-text">Hi there! What are you looking for?</p>
+    <div class="container">
+        <!-- Chat Section -->
+        <section id="chatSection" class="section">
+            <div class="chat-container">
+                <div class="message-row" id="messageRow">
+                    <div class="avatar">KK</div>
+                    <div class="message-bubble">
+                        <p class="message-text">Hi there! What are you looking for?</p>
+                    </div>
+                </div>
+                <div class="options-container" id="optionsContainer">
+                    <button class="option-button" id="aboutButton">👋🏽 About</button>
+                    <button class="option-button" id="workButton">🍿 Movies</button>
+                </div>
             </div>
-        </div>
-        
-        <div class="options-container" id="optionsContainer">
-            <button class="option-button" id="workButton">💼 Work stuff</button>
-            <button class="option-button" id="aboutButton">🎉 Fun stuff</button>
-        </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="aboutSection" class="section">
+            <div class="about-section">
+                <div class="about-header">
+                    <img src="images/headshot.jpg" alt="Kushay's profile" class="profile-image">
+                </div>
+                    <p>I grew up in Kolkata, India. Moved to the US at 18. Studied Math, Statistics, and (little bit) Computer Science at UCLA. Joined an insure-tech start up and have been working as a Business Analyst in the marketing team since. Primarily, learning how to grab people’s attention and keep them engaged. Demand generation is lots of fun. Demand capture, less so. </p>
+                    <p>In my spare time, I love movies, books, running, golf and recently photography.</p>
+                    <p>My ultimate goal is to build a business. A personal website, to learn web development was a logical next step on this journey. Quickly, I learnt that I need a technical cofounder.</p>
+            </div>
+        </section>
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const messageRow = document.getElementById('messageRow');
-        const optionsContainer = document.getElementById('optionsContainer');
-        const workButton = document.getElementById('workButton');
-        const aboutButton = document.getElementById('aboutButton');
+        document.addEventListener('DOMContentLoaded', () => {
+            const messageRow = document.getElementById('messageRow');
+            const optionsContainer = document.getElementById('optionsContainer');
+            const workButton = document.getElementById('workButton');
+            const aboutButton = document.getElementById('aboutButton');
+            const aboutSection = document.getElementById('aboutSection');
 
-        // Show message with fade in
-        setTimeout(() => {
-            messageRow.classList.remove('hidden');
-        }, 500);
+            // Show message with fade in
+            setTimeout(() => {
+                messageRow.classList.remove('hidden');
+            }, 500);
 
-        // Show options container
-        setTimeout(() => {
-            optionsContainer.style.display = 'block';
-        }, 1500);
+            // Show options container
+            setTimeout(() => {
+                optionsContainer.style.display = 'block';
+            }, 1500);
 
-        // Show first button with a delay
-        setTimeout(() => {
-            workButton.classList.add('show');
-        }, 1600);
+            // Show first button with a delay
+            setTimeout(() => {
+                aboutButton.classList.add('show');
+            }, 1600);
 
-        // Show second button after a delay
-        setTimeout(() => {
-            aboutButton.classList.add('show');
-        }, 1900);
+            // Show second button after a delay
+            setTimeout(() => {
+                workButton.classList.add('show');
+            }, 1900);
 
-        // Add click handlers for buttons
-        const buttons = document.querySelectorAll('.option-button');
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                console.log('Clicked:', button.textContent);
+            // Smooth scroll to About section on button click
+            aboutButton.addEventListener('click', () => {
+                aboutSection.scrollIntoView({ behavior: 'smooth' });
             });
         });
-    });
     </script>
 </body>
 </html>
