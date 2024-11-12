@@ -94,6 +94,9 @@ body {
   width: 100%;
   margin-bottom: 0.75rem;
   display: block;
+  width: auto;
+  display: inline-block;
+  margin-right: 0.5rem;
 }
 
 .option-button.show {
@@ -112,6 +115,8 @@ body {
   width: 100%;
   padding: 2rem;
   color: white;
+  position: relative;  /* Keep this for footer positioning */
+  margin: 0 auto;
 }
 
 .about-section p {
@@ -137,11 +142,48 @@ body {
   align-items: center;
 }
 
+.footer {
+  position: absolute;
+  bottom: -3rem;      /* Position it below the content */
+  right: 0;          /* Align to right edge of content */
+  font-size: 14px;
+  color: #D1D5DB;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+}
+
+.link-default {
+  text-decoration-thickness: .10em;
+  text-underline-offset: .1em;
+  transition-duration: .1s;
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  text-decoration-line:underline
+}
+
+.link-default:hover, .link-default:active {
+  opacity:.5
+}
+
+a {
+  color: inherit;
+  text-decoration:inherit
+}
+
 @media (min-width: 768px) {
   .option-button {
       width: auto;
       display: inline-block;
       margin-right: 0.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+      right: 50%;
+      transform: translateX(50%);
+      bottom: -3rem;
   }
 }
 
