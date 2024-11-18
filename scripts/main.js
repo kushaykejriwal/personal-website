@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         aboutSection.scrollIntoView({ behavior: 'smooth' });
     });
 
-    const updateDate = new Date();
+    const lastModified = new Date(document.lastModified);
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-    lastUpdated.textContent = `Last Updated: ${updateDate.toLocaleDateString('en-US', options)}`;
+    lastUpdated.textContent = `Last Updated: ${lastModified.toLocaleDateString('en-US', options)}`;
 });
