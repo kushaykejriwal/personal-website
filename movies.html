@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Library | Kushay</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/movies.css">
+</head>
+<body>
+    <div class="container">
+        <section id="moviesSection" class="section">
+            <div class="movies-container">
+                <div class="movies-header">
+                    <div class="search-container">
+                        <input type="text" id="movieSearch" placeholder="Search movies...">
+                    </div>
+                    <div class="filters-container">
+                        <select id="ratingFilter" class="filter-dropdown">
+                            <option value="">RATING</option>
+                        </select>
+                        <select id="directorFilter" class="filter-dropdown">
+                            <option value="">DIRECTOR</option>
+                        </select>
+                        <select id="genreFilter" class="filter-dropdown">
+                            <option value="">GENRE</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="movie-grid" id="movieGrid"></div>
+            </div>
+        </section>
+    </div>
+    <script src="scripts/movies.js"></script>
+</body>
+</html>
