@@ -153,25 +153,30 @@ document.addEventListener('DOMContentLoaded', () => {
         renderMovies(filtered);
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const dropdowns = document.querySelectorAll('.filter-dropdown');
+    // Only apply on mobile devices
+if (window.innerWidth <= 768) {
+    const filterDropdowns = document.querySelectorAll('.filter-dropdown');
     
-        // Remove focus when tapping outside dropdowns on mobile
-        document.addEventListener('touchstart', (e) => {
-            dropdowns.forEach(dropdown => {
-                if (!dropdown.contains(e.target)) {
-                    dropdown.blur(); // Remove focus
-                }
-            });
-        });
-    
-        // Remove focus when dropdown is interacted with and loses focus
-        dropdowns.forEach(dropdown => {
-            dropdown.addEventListener('focusout', () => {
+    document.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('filter-dropdown')) {
+            filterDropdowns.forEach(dropdown => {
                 dropdown.blur();
             });
+        }
+    });
+
+    filterDropdowns.forEach(dropdown => {
+        dropdown.addEventListener('click', () => {
+            filterDropdowns.forEach(other => {
+                if (other !== dropdown) other.blur();
+            });
+        });
+        
+        dropdown.addEventListener('change', (e) => {
+            e.target.style.color = e.target.value ? 'white' : '#666';
         });
     });
+}
 
     [ratingFilter, directorFilter, genreFilter].forEach(filter => {
         filter.addEventListener('change', filterMovies);
