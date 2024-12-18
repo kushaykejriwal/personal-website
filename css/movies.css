@@ -45,6 +45,17 @@
     padding-right: 1.5rem;
 }
 
+.filter-dropdown:focus,
+.filter-dropdown:active {
+    outline: none !important;
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.filter-dropdown::-ms-expand {
+    display: none;
+}
+
 .filter-dropdown:hover {
     color: #fff;
 }
