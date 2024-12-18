@@ -35,13 +35,62 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="movie-title">${movie['Movie Name']}</div>
                     <div class="movie-year">${movie['Year']}</div>
                     <div class="movie-rating">${generateStarRating(movie['Rating'])}</div>
-                    <div class="movie-director">Director: ${movie['Director']}</div>
-                    <div class="movie-genre">Genre: ${movie['Genre']}</div>
                 </div>
             `;
+            
+            movieCard.addEventListener('click', () => showModal(movie));
             movieGrid.appendChild(movieCard);
         });
     }
+    
+    // Add these new functions
+    function showModal(movie) {
+        const modal = document.getElementById('movieModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalInfo = document.getElementById('modalInfo');
+    
+        modalTitle.textContent = movie['Movie Name'];
+        modalInfo.innerHTML = `
+            <div class="modal-info-item">
+                <span class="modal-label">Rating:</span>${generateStarRating(movie['Rating'])}
+            </div>
+            <div class="modal-info-item">
+                <span class="modal-label">Year:</span>${movie['Year']}
+            </div>
+            <div class="modal-info-item">
+                <span class="modal-label">Director:</span>${movie['Director']}
+            </div>
+            <div class="modal-info-item">
+                <span class="modal-label">Genre:</span>${movie['Genre']}
+            </div>
+            <div class="modal-info-item">
+                <span class="modal-label">Description:</span>${movie['Description'] || 'No description available'}
+            </div>
+            ${movie['Comments'] ? `
+            <div class="modal-info-item">
+                <span class="modal-label">Kushay's Comments:</span>${movie['Comments']}
+            </div>
+            ` : ''}
+        `;
+    
+        modal.style.display = 'block';
+    }
+    
+    // Add modal close functionality
+        const modal = document.getElementById('movieModal');
+        const closeBtn = document.querySelector('.close');
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+        }
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
 
     function populateFilters() {
         const directors = [...new Set(movies.map(m => m['Director']))];
