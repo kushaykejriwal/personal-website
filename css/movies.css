@@ -28,28 +28,40 @@
 
 .filters-container {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem; /* Minimal gap between filters */
+    justify-content: space-between; /* Distribute filters evenly */
 }
 
 .filter-dropdown {
-    padding: 0.5rem 1rem;
+    flex: 1; /* Equal width for all filters */
+    max-width: 100%; /* Prevent overflow */
+    padding: 0.5rem 0; /* Adjust padding for height */
     background-color: transparent;
-    border: none;
+    border: none; /* Remove the border */
+    border-radius: 0;
     color: #666;
-    font-size: 0.9rem;
-    cursor: pointer;
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    cursor: pointer;
     appearance: none;
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right center;
-    padding-right: 1.5rem;
+    background-size: 10px;
+    padding-right: 1.5rem; /* Space for the dropdown arrow */
+    box-sizing: border-box;
 }
 
 .filter-dropdown:focus,
 .filter-dropdown:active {
-    outline: none !important;
+    outline: none !important; /* Remove outline on focus */
     background-color: transparent !important;
-    border: none !important;
+}
+
+.filter-dropdown option {
+    background-color: #1E1E1E;
+    color: #fff;
+    text-transform: capitalize;
+    padding: 0.3rem;
 }
 
 .filter-dropdown::-ms-expand {
@@ -58,12 +70,7 @@
 
 .filter-dropdown:hover {
     color: #fff;
-}
-
-.filter-dropdown option {
-    background-color: #1E1E1E;
-    color: #fff;
-    padding: 8px;
+    border-color: #2563EB;
 }
 
 .movie-grid {
@@ -163,3 +170,47 @@
     color: #666;
     margin-right: 8px;
 }
+
+@media (max-width: 768px) {
+    .movies-container {
+      max-width: 100%;
+      padding: 0 1rem;
+    }
+  
+    .movie-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+    }
+  
+    .movie-poster {
+      width: 100%;
+      aspect-ratio: 2/3;
+      max-width: 120px;
+    }
+  
+    .movie-title {
+      font-size: 0.8rem;
+    }
+  
+    .movie-year {
+      font-size: 0.7rem;
+    }
+  
+    .modal-content {
+      width: 90%;
+      margin: 10% auto;
+      padding: 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .filters-container {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  
+    .filter-dropdown {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.8rem;
+    }
+  }

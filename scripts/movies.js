@@ -153,6 +153,26 @@ document.addEventListener('DOMContentLoaded', () => {
         renderMovies(filtered);
     });
 
+    document.addEventListener('DOMContentLoaded', () => {
+        const dropdowns = document.querySelectorAll('.filter-dropdown');
+    
+        // Remove focus when tapping outside dropdowns on mobile
+        document.addEventListener('touchstart', (e) => {
+            dropdowns.forEach(dropdown => {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.blur(); // Remove focus
+                }
+            });
+        });
+    
+        // Remove focus when dropdown is interacted with and loses focus
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('focusout', () => {
+                dropdown.blur();
+            });
+        });
+    });
+
     [ratingFilter, directorFilter, genreFilter].forEach(filter => {
         filter.addEventListener('change', filterMovies);
     });
