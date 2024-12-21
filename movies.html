@@ -13,7 +13,10 @@
             <div class="movies-container">
                 <div class="movies-header">
                     <div class="search-container">
-                        <input type="text" id="movieSearch" placeholder="Search movies...">
+                        <div class="search-wrapper">
+                            <input type="text" id="movieSearch" placeholder="Search or recommend movies...">
+                            <button class="clear-search" id="clearSearch">&times;</button>
+                        </div>
                     </div>
                     <div class="filters-container">
                         <select id="ratingFilter" class="filter-dropdown">
@@ -31,13 +34,43 @@
             </div>
         </section>
     </div>
+
+    <!-- Movie Details Modal -->
     <div id="movieModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close movie-close">&times;</span>
             <h2 id="modalTitle"></h2>
             <div id="modalInfo"></div>
         </div>
     </div>
+
+    <!-- Recommend Movie Modal -->
+    <div id="recommendModal" class="modal">
+        <div class="modal-content">
+            <span class="close recommend-close">&times;</span>
+            <h2>Recommend a Movie</h2>
+            <form id="recommendForm" class="recommend-form">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="recommendUserName" required placeholder="Who is this 👀">
+                </div>
+                <div class="form-group">
+                    <label>Movie Title</label>
+                    <input type="text" id="recommendTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Year</label>
+                    <input type="number" id="recommendYear" placeholder="Optional">
+                </div>
+                <div class="form-group">
+                    <label>Why do you recommend this movie?</label>
+                    <textarea id="recommendReason" placeholder="Optional"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Recommendation</button>
+            </form>
+        </div>
+    </div>
+
     <script src="scripts/movies.js"></script>
 </body>
 </html>
