@@ -110,38 +110,75 @@ body {
 .movie-card {
     position: relative;
     border-radius: 4px;
-    overflow: hidden;
+    overflow: hidden; /* Ensures no inner content spills */
     cursor: pointer;
+    padding: 0; /* Remove padding that might create artifacts */
+    border: 2px solid transparent; /* Default transparent border */
+    transition: border-color 0.2s ease; /* Smooth transition for hover effect */
+    box-sizing: border-box; /* Include border and padding in size calculations */
+    background-color: transparent; /* Ensure no background conflicts */
+}
+
+.movie-card:hover {
+    border-color: #2563EB; /* Blue highlight on hover */
+}
+
+
+.movie-card:hover .movie-info {
+    opacity: 1; /* Show on hover */
+}
+
+.movie-card:hover .movie-rating {
+    color: white; /* Change star color to white on hover */
 }
 
 .movie-poster {
     width: 100%;
     aspect-ratio: 2/3;
     object-fit: cover;
-    border-radius: 4px;
+    display: block;
+    border: none !important; /* Ensure no border on the poster image */
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove any padding */
+    box-shadow: none !important; /* Remove any potential box-shadow */
 }
 
+
 .movie-info {
-    padding: 0.5rem 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.2s ease; /* Smooth fade-in effect */
 }
 
 .movie-title {
     color: white;
     font-size: 0.9rem;
+    text-align: center;
+    padding: 0 0.5rem;
     margin-bottom: 0.25rem;
 }
 
 .movie-year {
-    color: #666;
-    font-size: 0.7rem;
+    color: #999;
+    font-size: 0.8rem;
 }
 
 .movie-rating {
-    display: flex;
-    gap: 2px;
-    margin-top: 4px;
+    text-align: center;
     color: #666;
+    font-size: 0.8rem;
+    transition: color 0.2s ease;
 }
+
 
 .star.filled {
     color: #00E054;
@@ -333,6 +370,17 @@ body {
     animation: slideOutFade 0.5s ease-in forwards;
 }
 
+/* Hover effects for desktop */
+@media (min-width: 769px) {
+    .movie-card:hover .movie-info {
+        opacity: 1;
+    }
+    
+    .movie-card:hover .movie-rating {
+        color: white;  /* Change star color to white on hover */
+    }
+}
+
 @keyframes slideOutFade {
     from {
         opacity: 1;
@@ -369,6 +417,10 @@ body {
       width: 90%;
       margin: 10% auto;
       padding: 15px;
+    }
+
+    .movie-info {
+        display: none;
     }
   }
   

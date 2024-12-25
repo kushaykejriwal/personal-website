@@ -63,13 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const movieCard = document.createElement('div');
             movieCard.classList.add('movie-card');
             movieCard.innerHTML = `
-                <img src="${movie['Poster']}" alt="${movie['Movie Name']}" class="movie-poster" 
-                     onerror="this.onerror=null; this.src='images/default-poster.jpg';">
+                <img src="${movie['Poster']}" alt="${movie['Movie Name']}" class="movie-poster">
                 <div class="movie-info">
                     <div class="movie-title">${movie['Movie Name']}</div>
                     <div class="movie-year">${movie['Year']}</div>
-                    <div class="movie-rating">${generateStarRating(movie['Rating'])}</div>
                 </div>
+                <div class="movie-rating">${generateStarRating(movie['Rating'])}</div>
             `;
             
             movieCard.addEventListener('click', () => showModal(movie));
