@@ -396,6 +396,29 @@ body {
     background-color: #EF4444;
 }
 
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+    z-index: 101; /* Make sure it's above the header */
+}
+
+.back-button:hover {
+    color: white;
+}
+
+.back-arrow {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
 @keyframes slideIn {
     from {
         transform: translateY(100%);
@@ -439,6 +462,10 @@ body {
     .movies-header {
         width: calc(100%);
         top: 80px;
+    }
+
+    .back-button {
+        top: 40px; /* Adjust this value based on your mobile layout */
     }
   
     .movie-grid {
