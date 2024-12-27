@@ -46,6 +46,17 @@ body {
     background-color: #18181B;
 }
 
+.movies-header::before {
+    content: '';
+    position: absolute;
+    top: -20px;  /* Position above the header */
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to top, #18181B 0%, rgba(24, 24, 27, 0) 100%);  /* Reverse gradient direction */
+    pointer-events: none;
+}
+
 .movies-header::after {
     content: '';
     position: absolute;
