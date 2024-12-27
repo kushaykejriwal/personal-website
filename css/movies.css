@@ -125,7 +125,7 @@ body {
 }
 
 .movie-grid {
-    margin-top: 240px; /* Space for fixed header */
+    margin-top: 240px;
     width: 42rem;
     max-width: calc(100% - 2rem);
     margin-left: auto;
@@ -431,7 +431,7 @@ body {
     }
   
     .movie-grid {
-        margin-top: 180px;
+        margin-top: 0px;
         width: calc(100%);
         max-width: calc(100%);
         grid-template-columns: repeat(4, 1fr);
