@@ -185,21 +185,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('recommendForm').addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+    
         try {
             // Validate form data
             const userName = document.getElementById('recommendUserName').value.trim();
             const movieTitle = document.getElementById('recommendTitle').value.trim();
             const movieYear = document.getElementById('recommendYear').value || 'Unknown';
             const reason = document.getElementById('recommendReason').value || 'No reason provided';
-
+    
             if (!userName) {
                 throw new Error('Please enter your name');
             }
             if (!movieTitle) {
                 throw new Error('Please enter a movie title');
             }
-
+    
             // Create the recommendation object
             const recommendation = {
                 Timestamp: new Date().toISOString(),
@@ -209,27 +209,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 Reason: reason,
                 Status: 'New'
             };
-
+    
             console.log('Payload:', JSON.stringify(recommendation));
-
-            const response = await fetch(UP_NEXT_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(recommendation)
+    
+            // Close the modal immediately to prevent duplicate submissions
+            recommendModal.style.display = 'none';
+    
+            // Make the API call
+            const response = await fetch(`${UP_NEXT_URL}?payload=${encodeURIComponent(JSON.stringify(recommendation))}`, {
+                method: 'GET'
             });
-
+    
             if (!response.ok) {
                 throw new Error(`Error submitting recommendation: ${response.statusText}`);
             }
-
+    
+            // Reset the form and show success notification
             document.getElementById('recommendForm').reset();
-            recommendModal.style.display = 'none';
             showNotification('Thank you for your recommendation!', 'success');
         } catch (error) {
+            // Show error notification and reopen the modal if needed
             console.error('Error submitting recommendation:', error);
             showNotification(error.message || 'Error submitting recommendation. Please try again.', 'error');
+            recommendModal.style.display = 'block'; // Reopen the modal if there was an error
         }
     });
     
