@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ratingFilter = document.getElementById('ratingFilter');
     const directorFilter = document.getElementById('directorFilter');
     const genreFilter = document.getElementById('genreFilter');
-    const UP_NEXT_URL = 'https://opensheet.elk.sh/1DrMTcBc4FqPaQLmQoe_dWiE4AJ5ATJeI9lcztnwvYeQ/Up%20Next';
+    const UP_NEXT_URL = 'https://script.google.com/macros/s/AKfycbzD6gqGP82tnSqKhRWSDPInMcBJA-8e7bcylZNx-pbJTsU0VbC_Jm9Vp2M75xnfYDLaZg/exec';
 
     // Modal elements
     const movieModal = document.getElementById('movieModal');
@@ -188,22 +188,30 @@ document.addEventListener('DOMContentLoaded', () => {
         
         try {
             // Validate form data
-            if (!document.getElementById('recommendUserName').value.trim()) {
+            const userName = document.getElementById('recommendUserName').value.trim();
+            const movieTitle = document.getElementById('recommendTitle').value.trim();
+            const movieYear = document.getElementById('recommendYear').value || 'Unknown';
+            const reason = document.getElementById('recommendReason').value || 'No reason provided';
+
+            if (!userName) {
                 throw new Error('Please enter your name');
             }
-            if (!document.getElementById('recommendTitle').value.trim()) {
+            if (!movieTitle) {
                 throw new Error('Please enter a movie title');
             }
 
+            // Create the recommendation object
             const recommendation = {
                 Timestamp: new Date().toISOString(),
-                Name: document.getElementById('recommendUserName').value,
-                'Movie Title': document.getElementById('recommendTitle').value,
-                Year: document.getElementById('recommendYear').value || 'Unknown',
-                Reason: document.getElementById('recommendReason').value || 'No reason provided',
+                Name: userName,
+                'Movie Title': movieTitle,
+                Year: movieYear,
+                Reason: reason,
                 Status: 'New'
             };
-        
+
+            console.log('Payload:', JSON.stringify(recommendation));
+
             const response = await fetch(UP_NEXT_URL, {
                 method: 'POST',
                 headers: {
@@ -211,16 +219,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify(recommendation)
             });
-        
+
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error(`Error submitting recommendation: ${response.statusText}`);
             }
-        
+
             document.getElementById('recommendForm').reset();
             recommendModal.style.display = 'none';
             showNotification('Thank you for your recommendation!', 'success');
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error submitting recommendation:', error);
             showNotification(error.message || 'Error submitting recommendation. Please try again.', 'error');
         }
     });
@@ -233,7 +241,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
         setTimeout(() => {
             notification.classList.add('fade-out');
-            // Wait for animation to finish before removing element
             setTimeout(() => {
                 notification.remove();
             }, 500);
@@ -244,37 +251,11 @@ document.addEventListener('DOMContentLoaded', () => {
         clearSearchBtn.style.display = searchInput.value ? 'block' : 'none';
     });
     
-    // Clear search when button is clicked
     clearSearchBtn.addEventListener('click', () => {
         searchInput.value = '';
         clearSearchBtn.style.display = 'none';
         renderMovies(movies);  // Reset to show all movies
     });
-
-    // Mobile-specific dropdown handling
-    if (window.innerWidth <= 768) {
-        const filterDropdowns = document.querySelectorAll('.filter-dropdown');
-        
-        document.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('filter-dropdown')) {
-                filterDropdowns.forEach(dropdown => {
-                    dropdown.blur();
-                });
-            }
-        });
-
-        filterDropdowns.forEach(dropdown => {
-            dropdown.addEventListener('click', () => {
-                filterDropdowns.forEach(other => {
-                    if (other !== dropdown) other.blur();
-                });
-            });
-            
-            dropdown.addEventListener('change', (e) => {
-                e.target.style.color = e.target.value ? 'white' : '#666';
-            });
-        });
-    }
 
     [ratingFilter, directorFilter, genreFilter].forEach(filter => {
         filter.addEventListener('change', filterMovies);
