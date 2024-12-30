@@ -26,13 +26,12 @@ body {
 .recommend-btn {
     font-size: 1rem;  /* Match option-button size */
 }
+
 .movies-container {
     width: 100%;
     margin: 0 auto;
     position: relative;
-    /* height: 100vh; */
-    display: flex;
-    flex-direction: column;
+    bottom: 35rem
 }
 
 .movies-header {
@@ -136,16 +135,15 @@ body {
 }
 
 .movie-grid {
-    margin-top: 240px;
+    position: absolute; /* Change this */
+    top: 240px; /* Fixed distance from top */
     width: 42rem;
     max-width: calc(100% - 2rem);
-    margin-left: auto;
-    margin-right: auto;
+    left: 50%;
+    transform: translateX(-50%);
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 1rem;
-    overflow-y: auto; /* Enable vertical scrolling */
-    padding-bottom: 2rem; /* Add some bottom padding */
 }
 
 .movie-card {
@@ -461,11 +459,15 @@ body {
 
     .movies-header {
         width: calc(100%);
-        top: 80px;
+        top: 60px;
+    }
+
+    .movies-container {
+        bottom: 30rem;
     }
 
     .back-button {
-        top: 40px; /* Adjust this value based on your mobile layout */
+        top: 20px;
     }
   
     .movie-grid {
