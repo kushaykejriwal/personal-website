@@ -36,7 +36,7 @@ body {
 
 .movies-header {
     position: fixed;
-    top: 20px;
+    top: 1.5rem;
     width: 42rem;
     max-width: calc(100% - 2rem);
     left: 50%;
@@ -136,7 +136,7 @@ body {
 
 .movie-grid {
     position: absolute; /* Change this */
-    top: 240px; /* Fixed distance from top */
+    top: 16rem; /* Fixed distance from top */
     width: 42rem;
     max-width: calc(100% - 2rem);
     left: 50%;
@@ -459,7 +459,7 @@ body {
 
     .movies-header {
         width: calc(100%);
-        top: 60px;
+        top: 2.5rem;
     }
 
     .movies-container {
@@ -471,7 +471,6 @@ body {
     }
   
     .movie-grid {
-        margin-top: 0px;
         width: calc(100%);
         max-width: calc(100%);
         grid-template-columns: repeat(4, 1fr);
