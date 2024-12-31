@@ -44,12 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadMovies() {
         try {
             const response = await fetch('https://opensheet.elk.sh/1DrMTcBc4FqPaQLmQoe_dWiE4AJ5ATJeI9lcztnwvYeQ/Watched');
-            console.log('Fetch response:', response);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
             movies = await response.json();
-            console.log('Movies:', movies);
+            
+            // Hide skeleton and show content
+            document.getElementById('skeletonGrid').style.display = 'none';
+            movieGrid.classList.remove('loading');
+            
             renderMovies(movies);
             populateFilters();
         } catch (error) {
@@ -228,10 +231,9 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('recommendForm').reset();
             showNotification('Thank you for your recommendation!', 'success');
         } catch (error) {
-            // Show error notification and reopen the modal if needed
             console.error('Error submitting recommendation:', error);
             showNotification(error.message || 'Error submitting recommendation. Please try again.', 'error');
-            recommendModal.style.display = 'block'; // Reopen the modal if there was an error
+            recommendModal.style.display = 'block';
         }
     });
     
@@ -256,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearSearchBtn.addEventListener('click', () => {
         searchInput.value = '';
         clearSearchBtn.style.display = 'none';
-        renderMovies(movies);  // Reset to show all movies
+        renderMovies(movies);
     });
 
     [ratingFilter, directorFilter, genreFilter].forEach(filter => {
