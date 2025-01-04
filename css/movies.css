@@ -136,7 +136,7 @@ body {
 
 .movie-grid {
     position: absolute; /* Change this */
-    top: 16rem; /* Fixed distance from top */
+    top: 20rem; /* Fixed distance from top */
     width: 42rem;
     max-width: calc(100% - 2rem);
     left: 50%;
@@ -420,7 +420,7 @@ body {
 /* Update your skeleton styles */
 .skeleton-grid {
     position: absolute;
-    top: 16rem;
+    top: 20rem;
     width: 42rem;
     max-width: calc(100% - 2rem);
     left: 50%;
