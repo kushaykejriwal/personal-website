@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const messageRow = document.getElementById('messageRow');
     const optionsContainer = document.getElementById('optionsContainer');
@@ -39,6 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Go to Movie page on button click.
     movieButton.addEventListener('click', () => {
         window.location.href = 'movies.html';
+    });
+
+    // Add event listener for the Books button
+    booksButton.addEventListener('click', () => {
+        window.location.href = 'books.html';
     });
 
     const lastModified = new Date(document.lastModified);

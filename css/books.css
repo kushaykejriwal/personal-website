@@ -1,0 +1,113 @@
+.books-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #D1D5DB;
+}
+
+.books-container h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.books-container p {
+    font-size: 1em;
+    margin-bottom: 15px;
+    color: #D1D5DB;
+}
+
+.latest-reads, .favorite-reads {
+    margin-top: 30px;
+}
+
+.latest-reads h2, .favorite-reads h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: 300;
+} 
+
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+    z-index: 101; /* Make sure it's above the header */
+}
+
+.back-button:hover {
+    color: white;
+}
+
+.scroll-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    flex-grow: 1;
+    scroll-behavior: smooth;
+}
+
+.book {
+    flex: 0 0 auto;
+    width: 150px;
+    text-align: center;
+    color: #D1D5DB;
+}
+
+.book-cover {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.book-tag {
+    font-size: 0.875rem;
+    color: white;
+    background-color: #4F46E5;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.scroll-arrow {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.scroll-arrow.left {
+    margin-right: 5px;
+}
+
+.scroll-arrow.right {
+    margin-left: 5px;
+}

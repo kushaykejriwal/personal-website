@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books - Kushay</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/books.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <span class="back-arrow">&lt;</span>
+            <span class="back-text">Home</span>
+        </a>
+        <!-- Books Section -->
+        <section id="booksSection" class="section">
+            <div class="books-container">
+                <h1>📚</h1>
+                <p> You will find that this section is more relaxed than my <a href="movies.html" class="link-default" title="movies">movie library</a>. No ratings, no reviews, no pressure. Just some books I picked up to explore topics that I wanted to learn about.</p>
+                <!-- Latest Reads Section -->
+                <div class="latest-reads">
+                    <h2>Recents</h2>
+                    <div class="scroll-wrapper">
+                        <button class="scroll-arrow left" onclick="scrollLeftContainer('recents')">&lt;</button>
+                        <div class="scroll-container" id="recents"></div>
+                        <button class="scroll-arrow right" onclick="scrollRightContainer('recents')">&gt;</button>
+                    </div>
+                </div>
+
+                <!-- Favorite Reads Section -->
+                <div class="favorite-reads">
+                    <h2>Favorites</h2>
+                    <div class="scroll-wrapper">
+                        <button class="scroll-arrow left" onclick="scrollLeftContainer('favorites')">&lt;</button>
+                        <div class="scroll-container" id="favorites"></div>
+                        <button class="scroll-arrow right" onclick="scrollRightContainer('favorites')">&gt;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Back Button -->
+        <div class="options-container">
+            <button class="option-button" id="backButton">🔙 Back</button>
+        </div>
+    </div>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/books.js"></script>
+</body>
+</html> 
