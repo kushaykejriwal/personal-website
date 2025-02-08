@@ -33,6 +33,12 @@ const tagMap = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Add margin/padding above the books emoji
+    const booksEmoji = document.querySelector('.books-emoji');
+    if (booksEmoji) {
+        booksEmoji.style.marginTop = '2rem'; // Adds space above the emoji
+    }
+    
     const SHEET_ID = '18dIV_dmoZIY2panv3gTvqFiDjhKhhWWofeWDJK8O-j8';
     const SHEET_NAME = 'Recents & Favorites';
     const URL = `https://opensheet.elk.sh/${SHEET_ID}/${SHEET_NAME}`;
