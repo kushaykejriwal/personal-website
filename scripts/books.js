@@ -1,35 +1,32 @@
-// Define tag mapping dictionary
+// Define color mapping for genres/tags
+const genreColors = {
+    'photography': '#818CF8',    // Indigo
+    'technology': '#6B7280',     // Gray
+    'history': '#92400E',        // Brown
+    'science': '#059669',        // Green
+    'philosophy': '#9333EA',     // Purple
+    'psychology': '#DB2777',     // Pink
+    'economics': '#2563EB',      // Blue
+    'medicine': '#DC2626',       // Red
+    'biography': '#D97706',      // Orange
+    'fiction': '#4F46E5',        // Indigo
+    'non-fiction': '#4B5563'     // Gray
+};
+
+// Define tag mapping (if you want to display different text than the raw tag)
 const tagMap = {
-    "business": "Business",
-    "management": "Business",
-    "planning": "Strategy",
-    "goal": "Productivity",
-    "psychology": "Psychology",
-    "success": "Self-improvement",
-    "performance": "Productivity",
-    "leadership": "Leadership",
-    "entrepreneurship": "Entrepreneurship",
-    "economics": "Economics",
-    "finance": "Finance",
-    "education": "Education",
-    "social": "Social Issues",
-    "history": "History",
-    "science": "Science",
-    "technology": "Technology",
-    "innovation": "Innovation",
-    "communication": "Communication",
-    "strategy": "Strategy",
-    "philosophy": "Philosophy",
-    "politics": "Politics",
-    "government": "Politics",
-    "world politics": "Politics",
-    "geopolitics": "Geopolitics",
-    "international relations": "Geopolitics",
-    "international security": "Geopolitics",
-    "geopolítica": "Politics",
-    "política mundial": "Politics",
-    "géopolitique": "Politics",
-    "relations internationales": "International Affairs"
+    'photography': 'Photography',
+    'technology': 'Technology',
+    'history': 'History',
+    'science': 'Science',
+    'philosophy': 'Philosophy',
+    'psychology': 'Psychology',
+    'economics': 'Economics',
+    'medicine': 'Medicine',
+    'biography': 'Biography',
+    'fiction': 'Fiction',
+    'non-fiction': 'Non-Fiction'
+    // Add more mappings as needed
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -67,30 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createBookElement(tags, coverURL) {
         console.log('Original tags:', tags); // Debug log
-        // Define color mapping for different genres
-        const genreColors = {
-            'Business': '#4F46E5',        // Indigo
-            'Strategy': '#2563EB',        // Blue
-            'Productivity': '#0EA5E9',    // Light Blue
-            'Psychology': '#EC4899',      // Pink
-            'Self-improvement': '#8B5CF6', // Purple
-            'Leadership': '#F59E0B',      // Amber
-            'Entrepreneurship': '#10B981', // Emerald
-            'Economics': '#059669',       // Green
-            'Finance': '#047857',         // Dark Green
-            'Education': '#6366F1',       // Violet
-            'Social Issues': '#DC2626',   // Red
-            'History': '#854D0E',         // Brown
-            'Science': '#0891B2',         // Cyan
-            'Technology': '#4B5563',      // Gray
-            'Innovation': '#7C3AED',      // Purple
-            'Communication': '#DB2777',   // Pink
-            'Philosophy': '#6D28D9',      // Purple
-            'Politics': '#991B1B',        // Dark Red
-            'Geopolitics': '#7F1D1D',     // Darker Red
-            'International Affairs': '#9D174D' // Dark Pink
-        };
-
         const bookDiv = document.createElement('div');
         bookDiv.classList.add('book');
 
@@ -113,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tagElement.classList.add('book-tag');
             
             // Apply color based on genre
-            const color = genreColors[mappedTag] || '#4F46E5'; // Default to indigo if no color match
+            const color = genreColors[trimmedTag] || '#4F46E5'; // Default to indigo if no color match
             tagElement.style.backgroundColor = color;
             
             tagsContainer.appendChild(tagElement);
@@ -122,7 +95,94 @@ document.addEventListener('DOMContentLoaded', () => {
         bookDiv.appendChild(img);
         bookDiv.appendChild(tagsContainer);
 
+        // Add click handler for modal
+        bookDiv.addEventListener('click', () => {
+            createAndShowModal(coverURL, tags);
+        });
+
         return bookDiv;
+    }
+
+    function createAndShowModal(coverURL, tags) {
+        // Create modal elements
+        const modal = document.createElement('div');
+        modal.className = 'book-modal';
+        
+        const modalContent = document.createElement('div');
+        modalContent.className = 'book-modal-content';
+        
+        // Create close button
+        const closeButton = document.createElement('button');
+        closeButton.className = 'modal-close';
+        closeButton.innerHTML = '×';
+        closeButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeModal();
+        });
+        
+        // Create image
+        const img = document.createElement('img');
+        img.src = coverURL;
+        img.alt = tags;
+        img.className = 'modal-book-cover';
+        
+        // Create tags container
+        const tagsContainer = document.createElement('div');
+        tagsContainer.className = 'modal-tags';
+        
+        // Add tags
+        tags.split(',').forEach(tag => {
+            const trimmedTag = tag.trim().toLowerCase();
+            const mappedTag = tagMap[trimmedTag] || trimmedTag;
+            const tagElement = document.createElement('span');
+            tagElement.textContent = mappedTag.split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+            tagElement.className = 'modal-book-tag';
+            
+            const color = genreColors[trimmedTag] || '#4F46E5';
+            tagElement.style.backgroundColor = color;
+            
+            tagsContainer.appendChild(tagElement);
+        });
+        
+        // Assemble modal
+        modalContent.appendChild(closeButton);
+        modalContent.appendChild(img);
+        modalContent.appendChild(tagsContainer);
+        modal.appendChild(modalContent);
+        
+        // Add to document
+        document.body.appendChild(modal);
+        
+        // Trigger animation
+        requestAnimationFrame(() => {
+            modal.classList.add('show');
+        });
+        
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // Close on escape key
+        document.addEventListener('keydown', handleEscape);
+        
+        function handleEscape(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        }
+        
+        function closeModal() {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                document.body.removeChild(modal);
+                document.removeEventListener('keydown', handleEscape);
+            }, 300);
+        }
     }
 
     window.scrollLeftContainer = function(containerId) {
