@@ -79,15 +79,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const trimmedTag = tag.trim().toLowerCase();
             const mappedTag = tagMap[trimmedTag] || trimmedTag;
             const tagElement = document.createElement('span');
-            // Capitalize the first letter of each word
             tagElement.textContent = mappedTag.split(' ')
                 .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                 .join(' ');
-            tagElement.classList.add('book-tag');
-            
-            // Apply color based on genre
-            const color = genreColors[trimmedTag] || '#4F46E5'; // Default to indigo if no color match
-            tagElement.style.backgroundColor = color;
+            tagElement.classList.add('book-tag', `tag-${trimmedTag.replace(/\s+/g, '-')}`);
             
             tagsContainer.appendChild(tagElement);
         });
@@ -138,10 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tagElement.textContent = mappedTag.split(' ')
                 .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                 .join(' ');
-            tagElement.className = 'modal-book-tag';
-            
-            const color = genreColors[trimmedTag] || '#4F46E5';
-            tagElement.style.backgroundColor = color;
+            tagElement.className = `modal-book-tag tag-${trimmedTag.replace(/\s+/g, '-')}`;
             
             tagsContainer.appendChild(tagElement);
         });
@@ -196,4 +188,4 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById(containerId);
         container.scrollBy({ left: 150, behavior: 'smooth' });
     };
-}); 
+});

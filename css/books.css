@@ -119,7 +119,6 @@
 .book-tag {
     font-size: 0.7rem;
     color: white;
-    width: 80px; /* Fixed width for all tags */
     padding: 4px 0;
     border-radius: 4px;
     display: inline-block;
@@ -457,3 +456,42 @@
         font-size: 24px;
     }
 }
+
+/* Enhanced tag styles */
+.book-tag {
+    display: inline-block;
+    margin: 4px 6px;
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: white;
+    background: gray; /* fallback */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: default;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.book-tag:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Topic-specific color classes */
+.tag-philosophy       { background: #5A4E42; }
+.tag-social-issues    { background: #A05260; }
+.tag-business         { background: #3A506B; }
+.tag-entrepreneurship { background: #51727E; }
+.tag-economics        { background: #6A4E4E; }
+.tag-politics         { background: #7C5E7D; }
+.tag-geopolitics      { background: #5B4C9D; }
+.tag-photography      { background: #4A4E69; }
+.tag-strategy         { background: #3F3D56; }
+.tag-history          { background: #7D8597; }
+.tag-science          { background: #4E8D7C; }
+.tag-self-improvement { background: #C0865E; }
+.tag-mathematics      { background: #4C6CA0; }
