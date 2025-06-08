@@ -75,17 +75,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const tagsContainer = document.createElement('div');
         tagsContainer.classList.add('tags-container');
 
-        tags.split(',').forEach(tag => {
-            const trimmedTag = tag.trim().toLowerCase();
-            const mappedTag = tagMap[trimmedTag] || trimmedTag;
-            const tagElement = document.createElement('span');
-            tagElement.textContent = mappedTag.split(' ')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(' ');
-            tagElement.classList.add('book-tag', `tag-${trimmedTag.replace(/\s+/g, '-')}`);
-            
-            tagsContainer.appendChild(tagElement);
-        });
+        // Only take the first tag
+        const firstTag = tags.split(',')[0].trim().toLowerCase();
+        const mappedTag = tagMap[firstTag] || firstTag;
+        const tagElement = document.createElement('span');
+        tagElement.textContent = mappedTag.split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+        tagElement.classList.add('book-tag', `tag-${firstTag.replace(/\s+/g, '-')}`);
+        
+        tagsContainer.appendChild(tagElement);
 
         bookDiv.appendChild(img);
         bookDiv.appendChild(tagsContainer);
