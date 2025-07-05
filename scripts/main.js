@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const movieButton = document.getElementById('movieButton');
     const aboutButton = document.getElementById('aboutButton');
     const booksButton = document.getElementById('booksButton');
+    const resumeButton = document.getElementById('resumeButton');
     const aboutSection = document.getElementById('aboutSection');
 
     // Show message with fade in
@@ -30,6 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         booksButton.classList.add('show');
     }, 1330);
+
+    // Show fourth button with less delay
+    setTimeout(() => {
+        resumeButton.classList.add('show');
+    }, 1660);
 
     // Smooth scroll to About section on button click
     aboutButton.addEventListener('click', () => {
@@ -63,8 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
         navigateWithFallback('books.html');
     });
 
+    // Add event listener for the Resume button to open PDF
+    resumeButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Open resume PDF in a new tab
+        window.open('resume.pdf', '_blank');
+    });
+
     // Add hover effect sound and visual feedback
-    [movieButton, aboutButton, booksButton].forEach(button => {
+    [movieButton, aboutButton, booksButton, resumeButton].forEach(button => {
         button.addEventListener('mouseenter', () => {
             button.style.transform = 'scale(1.05)';
             // Optional: Add subtle hover sound
@@ -85,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Add ARIA labels and roles
-    [movieButton, aboutButton, booksButton].forEach(button => {
+    [movieButton, aboutButton, booksButton, resumeButton].forEach(button => {
         button.setAttribute('role', 'button');
         button.setAttribute('tabindex', '0');
         
